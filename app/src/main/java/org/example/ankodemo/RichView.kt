@@ -9,9 +9,13 @@ import android.view.animation.ScaleAnimation
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
-import org.jetbrains.anko.*
+import org.jetbrains.anko.AnkoContext
 import org.jetbrains.anko.custom.ankoView
+import org.jetbrains.anko.dip
+import org.jetbrains.anko.imageView
+import org.jetbrains.anko.padding
 import org.jetbrains.anko.sdk25.coroutines.onClick
+import org.jetbrains.anko.textView
 
 class RichView : LinearLayout {
     private lateinit var image: ImageView
@@ -29,9 +33,8 @@ class RichView : LinearLayout {
         }
 
         text = textView("Anko Rich view") {
-            textSize = 19f
+            textSize = 22f
         }
-
         startAnimation()
     }
 

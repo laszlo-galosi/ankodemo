@@ -2,4 +2,12 @@
     <string name="app_name">AnkoDemo</string>
     <string name="name">Name</string>
     <string name="password">Password</string>
+  <string name="action_done">Done</string>
+  <string name="email">E-mail</string>
+  <string name="error_field_required">Cannot be empty</string>
+  <string name="error_field_length_minimum">Field length must be at least %d</string>
+  <string name="error_field_length_maximum">Maximum length is %d characters.</string>
+  <string name="error_field_length_equal">Field must be exactly %d characters long.</string>
+  <string name="error_field_invalid_email">Invalid e-mail address.</string>
+  <string name="error_field_invalid_password">Invalid password.</string>
 </resources>

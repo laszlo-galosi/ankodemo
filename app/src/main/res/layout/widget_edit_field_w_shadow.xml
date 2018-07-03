@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+  <data>
+
+    <variable
+        name="fieldLabel"
+        type="java.lang.String"
+        />
+
+    <variable
+        name="fieldHint"
+        type="java.lang.String"
+        />
+
+    <variable
+        name="fieldInputType"
+        type="int"
+        />
+
+    <variable
+        name="fieldId"
+        type="int"
+        />
+
+    <variable
+        name="fieldValue"
+        type="java.lang.String"
+        />
+
+    <variable
+        name="fieldPasswordToggle"
+        type="boolean"
+        />
+  </data>
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      >
+
+    <TextView
+        android:id="@+id/label"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/field_label_height"
+        android:text="@{fieldLabel}"
+        android:gravity="left|center_vertical"
+        tools:text="Label"
+        />
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/inputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:errorEnabled="false"
+        app:hintAnimationEnabled="false"
+        app:counterEnabled="false"
+        app:hintEnabled="false"
+        app:passwordToggleEnabled="@{fieldPasswordToggle}"
+        >
+
+      <android.support.design.widget.TextInputEditText
+          android:id="@+id/editField"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:inputType="@{fieldInputType}"
+          android:ems="10"
+          android:hint="@{fieldHint}"
+          android:text="@{fieldValue}"
+          tools:text="Mező"
+          tools:hint=""
+          />
+    </android.support.design.widget.TextInputLayout>
+
+    <TextView
+        android:id="@+id/error"
+        android:layout_width="match_parent"
+        android:gravity="left|center_vertical"
+        android:layout_height="@dimen/field_label_height"
+        android:textColor="@android:color/holo_red_light"
+        tools:text="Hiba"
+        />
+  </LinearLayout>
+</layout>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <item name="field_name" type="id"/>
+  <item name="field_email" type="id"/>
+  <item name="field_password" type="id"/>
+</resources>
