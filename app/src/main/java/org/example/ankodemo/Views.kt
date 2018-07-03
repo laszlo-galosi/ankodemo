@@ -2,7 +2,9 @@ package org.example.ankodemo
 
 import android.content.Context
 import android.databinding.ViewDataBinding
+import android.support.annotation.ColorRes
 import android.support.annotation.IdRes
+import android.support.v4.content.ContextCompat
 import android.view.View
 
 /**
@@ -20,3 +22,5 @@ fun View.visiblePlace(show: Boolean): Unit {
 }
 
 fun ViewDataBinding.find(@IdRes id: Int): View? = this.root.findViewById(id)
+
+fun Context.colorRes(@ColorRes colorRes: Int): Int = ContextCompat.getColor(this, colorRes)

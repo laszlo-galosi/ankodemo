@@ -57,7 +57,6 @@ class Validations(private val mContext: Context) {
     fun isValidEmail(value: Any): Validations {
         if (isNotEmpty(value).result) {
             val ePattern = EMAIL_PATTERN
-            val p = java.util.regex.Pattern.compile(ePattern)
             return matches(value, ePattern, mContext.getString(R.string.error_field_invalid_email))
         }
         return this

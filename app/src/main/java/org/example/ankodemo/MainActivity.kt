@@ -2,10 +2,13 @@ package org.example.ankodemo
 
 import android.content.Context
 import android.os.Bundle
+import android.support.design.widget.TextInputEditText
 import android.support.design.widget.TextInputLayout
+import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.text.InputType
 import android.text.TextUtils
+import android.text.method.PasswordTransformationMethod
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -14,16 +17,20 @@ import org.jetbrains.anko.AnkoComponent
 import org.jetbrains.anko.AnkoContext
 import org.jetbrains.anko.activityUiThreadWithContext
 import org.jetbrains.anko.applyRecursively
+import org.jetbrains.anko.backgroundColor
 import org.jetbrains.anko.button
 import org.jetbrains.anko.dip
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.find
+import org.jetbrains.anko.matchParent
 import org.jetbrains.anko.padding
 import org.jetbrains.anko.sdk25.coroutines.onClick
 import org.jetbrains.anko.setContentView
 import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.support.v4.nestedScrollView
 import org.jetbrains.anko.toast
 import org.jetbrains.anko.verticalLayout
+import org.jetbrains.anko.wrapContent
 import trikita.log.Log
 
 class MainActivity : AppCompatActivity() {
@@ -37,11 +44,12 @@ class MainActivity : AppCompatActivity() {
             Thread.sleep(500)
 
             activityUiThreadWithContext {
+                Log.d("tryLogin", name, password)
                 if (checkCredentials(name.toString(), password.toString())) {
                     toast("Logged in! :)")
                     startActivity<CountriesActivity>()
                 } else {
-                    toast("Wrong password :( Enter user:password")
+                    toast("Wrong password :( Enter:password")
                 }
             }
         }
@@ -64,104 +72,104 @@ class MainActivityUi : AnkoComponent<MainActivity>, Validations.Callback {
     }
 
     override fun createView(ui: AnkoContext<MainActivity>) = with(ui) {
-        verticalLayout {
-            padding = dip(32)
+        nestedScrollView {
+            lparams(width = matchParent, height = wrapContent)
+            verticalLayout {
+                padding = dip(32)
 
-            /*imageView(android.R.drawable.ic_menu_manage).lparams {
-                margin = dip(16)
-                gravity = Gravity.CENTER
-            }
-            val name = editText {
-            hintResource = R.string.name
-            }
-            val password = editText {
-                hintResource = R.string.password
-                inputType = TYPE_CLASS_TEXT or TYPE_TEXT_VARIATION_PASSWORD
-            }
-
-            textInputLayout {
-                isHintEnabled = true
-                isHintAnimationEnabled = true
-                isPasswordVisibilityToggleEnabled=true
-                textInputEditText {
+                /*imageView(android.R.drawable.ic_menu_manage).lparams {
+                    margin = dip(16)
+                    gravity = Gravity.CENTER
+                }
+                val name = editText {
+                hintResource = R.string.name
+                }
+                val password = editText {
                     hintResource = R.string.password
                     inputType = TYPE_CLASS_TEXT or TYPE_TEXT_VARIATION_PASSWORD
                 }
-            }*/
 
-            myRichView()
+                textInputLayout {
+                    isHintEnabled = true
+                    isHintAnimationEnabled = true
+                    isPasswordVisibilityToggleEnabled=true
+                    textInputEditText {
+                        hintResource = R.string.password
+                        inputType = TYPE_CLASS_TEXT or TYPE_TEXT_VARIATION_PASSWORD
+                    }
+                }*/
 
-            name = customInputField {
-                id = R.id.field_name
-                label = resources.getString(R.string.name)
-                hintText = resources.getString(R.string.name)
-            }
+                myRichView()
 
-//            val email = inflatedAnkoView(R.layout.widget_edit_field_w_shadow, {
-            email = inflatedAnkoView(R.layout.widget_edit_field, {
-                id = R.id.field_email
-                with(viewBinding) {
-                    setVariable(BR.fieldLabel, resources.getString(R.string.email))
-                    setVariable(BR.fieldHint, resources.getString(R.string.email))
-                    setVariable(BR.fieldInputType,
-                            InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS)
-                    setVariable(BR.fieldValue, "laszlo.galosi@gmail.com")
+                name = customInputField {
+                    id = R.id.field_name
+                    label = resources.getString(R.string.name)
+                    hintText = resources.getString(R.string.name)
                 }
-            })
 
-            password = inflatedAnkoView(R.layout.widget_edit_field, {
-                id = R.id.field_password
-                with(viewBinding) {
-                    setVariable(BR.fieldLabel, resources.getString(R.string.password))
-                    setVariable(BR.fieldHint, resources.getString(R.string.password))
-                    setVariable(BR.fieldInputType,
-                            InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS)
-                    setVariable(BR.fieldPasswordToggle, true)
-                }
-            })
+                email = inflatedAnkoView(R.layout.widget_edit_field, {
+                    id = R.id.field_email
+                    with(viewBinding) {
+                        setVariable(BR.fieldLabel, resources.getString(R.string.email))
+                        setVariable(BR.fieldHint, resources.getString(R.string.email))
+                        setVariable(BR.fieldInputType,
+                                InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS)
+                        setVariable(BR.fieldValue, "laszlo.galosi78@gmail.com")
+                    }
+                })
 
-            /*val passwordField = customInputField {
-                label = resources.getString(R.string.password)
-                hintText = resources.getString(R.string.password)
-                inputType = TYPE_CLASS_TEXT or TYPE_TEXT_VARIATION_PASSWORD
-                imeAction = EditorInfo.IME_ACTION_DONE
-                imeLabel = resources.getString(R.string.action_done)
-                onEditorAction = TextView.OnEditorActionListener { _, action, _ ->
-                    when (action) {
-                        EditorInfo.IME_ACTION_DONE -> {
-                            ui.owner.tryLogin(ui, name.value, this.value)
-                            true
+                password = inflatedAnkoView(R.layout.widget_edit_field, {
+                    id = R.id.field_password
+                    with(viewBinding) {
+                        setVariable(BR.fieldLabel, resources.getString(R.string.password))
+                        setVariable(BR.fieldHint, resources.getString(R.string.password))
+                        setVariable(BR.fieldInputType,
+                                InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD)
+                        setVariable(BR.fieldPasswordToggle, true)
+                        this.root.findViewById<TextInputEditText>(R.id.editField).apply {
+                            transformationMethod = PasswordTransformationMethod.getInstance()
                         }
-                        else -> false
                     }
-                }
-            }*/
+                })
 
-            button("Log in") {
-                onClick {
-                    if (validations(ui.ctx).result) {
-                        val passwValue = password.find<EditText>(R.id.editField)?.text.toString()
-                        ui.owner.tryLogin(ui, name.value, passwValue)
+                button("Log in") {
+
+                    backgroundColor = ctx.colorRes(R.color.material_deep_teal_500)
+                    onClick {
+                        if (validations(ui.ctx).result) {
+                            val passwValue = password.let {
+                                it.find<EditText>(R.id.editField).text.toString()
+                            }
+                            ui.owner.tryLogin(ui, name.value, passwValue)
+                        }
                     }
+                }.lparams {
+                    width = matchParent
+                    topMargin = dip(16)
+                    bottomMargin = dip(16)
                 }
-            }
+            } //VerticalLayout
         }.applyRecursively(customStyle)
     }
 
     fun validations(context: Context): Validations {
         return Validations.with(context).callback(this).apply {
-            val passwValue = password.find<EditText>(R.id.editField)?.text.toString()
-            val emailValue = email.find<EditText>(R.id.editField)?.text.toString()
+            val passwValue = password.let {
+                it.find<EditText>(R.id.editField).text.toString()
+            }
+            val emailValue = email.let {
+                it.find<EditText>(R.id.editField).text.toString()
+            }
 
             if (resultTag(name).isNotEmpty(name.value).result) {
-                equalTo(name.value as String, "user", "Wrong user :( Enter user:user")
+                equalTo(name.value, "user", "Wrong user :( Enter: user")
             }
             if (resultTag(email).isNotEmpty(emailValue).result) {
                 isValidEmail(emailValue)
             }
             if (resultTag(password).isNotEmpty(passwValue).result
                     and isValidPassword(passwValue).result) {
-                equalTo(passwValue, "password", "Wrong password :( Enter user:password")
+                equalTo(passwValue, "password", "Wrong password :( Enter: password")
             }
         }
     }
@@ -174,10 +182,13 @@ class MainActivityUi : AnkoComponent<MainActivity>, Validations.Callback {
         }
         //Set error text.
         if (tag is InputField) {
-            tag.errorText = error
-            tag.bind()
+            with(tag) {
+                errorText = error
+                helperTextColor = ContextCompat.getColor(ctx, R.color.error_color_material)
+                bind()
+            }
         } else {
-            tag.find<TextInputLayout>(R.id.inputLayout)?.error = error
+            tag.find<TextInputLayout>(R.id.inputLayout).error = error
         }
     }
 }

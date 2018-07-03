@@ -1,6 +1,8 @@
 package org.example.ankodemo
 
 import android.content.Context
+import android.graphics.Color
+import android.support.annotation.ColorInt
 import android.text.InputType
 import android.util.AttributeSet
 import android.view.Gravity
@@ -13,6 +15,7 @@ import android.widget.TextView
 import org.jetbrains.anko.AnkoContext
 import org.jetbrains.anko.custom.ankoView
 import org.jetbrains.anko.editText
+import org.jetbrains.anko.textColor
 import org.jetbrains.anko.textView
 
 /**
@@ -23,7 +26,14 @@ open class InputField : LinearLayout {
     var label: String? = null
     var hintText: String? = null
     var errorText: String? = null
-    var value: String? = null
+    @ColorInt
+    var helperTextColor: Int = Color.LTGRAY
+    var value: String
+        get() = editField.text.toString()
+        set(text) {
+            value = text
+            editField.setText(text)
+        }
     var labelEnabled: Boolean = true
     var errorEnabled: Boolean = true
     var inputType: Int = InputType.TYPE_CLASS_TEXT
@@ -33,8 +43,7 @@ open class InputField : LinearLayout {
 
     private lateinit var labelView: TextView
     private lateinit var errorView: TextView
-    private lateinit var editField:
-            EditText
+    private lateinit var editField: EditText
 
     private fun init() = AnkoContext.createDelegate(this).apply {
         gravity = Gravity.START or Gravity.CENTER_VERTICAL
@@ -71,10 +80,9 @@ open class InputField : LinearLayout {
         with(errorView) {
             visibility = if (errorEnabled) View.VISIBLE else View.GONE
             text = errorText
+            textColor = helperTextColor
         }
     }
-
-    fun value(): String? = editField.text?.toString()
 
     constructor(context: Context?) : super(context) {
         init()
