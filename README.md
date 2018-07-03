@@ -1,3 +1,7 @@
+Anko Demo Project
+=================
+Anko layouts demo example project based of [Anko Example Project](https://github.com/Kotlin/anko-example) 
+
 Anko Example Project
 ===========
 
