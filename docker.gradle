@@ -1,0 +1,18 @@
+task dockerBuild(type: Exec) {
+  // linux
+  commandLine 'sh',  './mainframer-android-docker.sh', 'build'
+}
+
+task dockerRunDebug(type: Exec) {
+  // linux
+  //./mainframer-android-docker.sh exec assembleDebug
+  commandLine 'bash', './mainframer-android-docker.sh', 'gradlew', 'assembleDebug', '-stacktrace'
+}
+
+task dockerStartDebug(type: Exec , dependsOn: ['dockerRunDebug', 'hello2u-app:installDebug']) {
+  // linux
+  commandLine 'adb', 'shell', 'am', 'start', '-n', 'hu.extremenet.hello2u/.MainActivity'
+
+  // windows
+  // commandLine 'cmd', '/c', 'adb', 'shell', 'am', 'start', '-n', 'com.example/.MyActivity'
+}

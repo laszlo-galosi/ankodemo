@@ -1,0 +1,8 @@
+#Mon Aug 06 13:16:04 CEST 2018
+remote_machine=vm
+
+android_target_sdk=28
+android_build_tools=27.1.1
+android_sdk_tools=25.2.5
+launching_activity=org.example.ankodemo/.MainActivity
+output_apk=./app/build/outputs/apk/debug/app-debug.apk

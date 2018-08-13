@@ -3,21 +3,44 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 
 android {
-  compileSdkVersion 27
-  buildToolsVersion "$support_version"
+  compileSdkVersion 28
+//  buildToolsVersion "$support_version"
 
   defaultConfig {
     applicationId "org.example.ankodemo"
-    minSdkVersion 15
-    targetSdkVersion 27
+    minSdkVersion 16
+    targetSdkVersion 28
     versionCode 1
     versionName "1.0"
+  }
+
+  signingConfigs {
+    debug {
+      storeFile file('../buildsystem/debug.keystore')
+      storePassword 'android'
+      keyAlias 'androiddebugkey'
+      keyPassword 'android'
+    }
+
+    release {
+      storeFile file('../buildsystem/debug.keystore')
+      storePassword 'android'
+      keyAlias 'androiddebugkey'
+      keyPassword 'android'
+    }
   }
 
   buildTypes {
     release {
       minifyEnabled false
-      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+//      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+      signingConfig signingConfigs.release
+    }
+    debug {
+      minifyEnabled false
+      signingConfig signingConfigs.debug
+      debuggable true
+      ext.alwaysUpdateBuildId = false
     }
   }
 
@@ -34,7 +57,11 @@ android {
 dependencies {
   implementation fileTree(dir: 'libs', include: ['*.jar'])
   implementation "com.android.support:appcompat-v7:$support_version"
+  implementation "com.android.support:support-v4:$support_version"
+//  implementation "androidx.appcompat:appcompat:$androix_version"
   implementation "com.android.support:design:$support_version"
+//  implementation "com.google.android.material:material:$androix_version"
+
   implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
   implementation "org.jetbrains.anko:anko-sdk25:$anko_version"
   implementation "org.jetbrains.anko:anko-sdk25-coroutines:$anko_version"
@@ -42,7 +69,8 @@ dependencies {
   implementation "org.jetbrains.anko:anko-design:$anko_version"
   implementation "co.trikita:log:1.1.1"
   implementation "org.jetbrains.anko:anko-design-coroutines:$anko_version"
-  kapt "com.android.databinding:compiler:$gradle_plugin_version"
+//  kapt "com.android.databinding:compiler:$gradle_plugin_version"
+  kapt "androidx.databinding:databinding-compiler:$gradle_plugin_version"
 }
 
 kotlin {
@@ -51,11 +79,11 @@ kotlin {
   }
 }
 
-/*afterEvaluate {
+afterEvaluate {
   // Temporary workaround for Kotlin 1.2.50 and DataBinding bug. For more context see
   // https://issuetracker.google.com/issues/110198434 and
   // https://youtrack.jetbrains.com/issue/KT-24915#comment=27-2914947
   kaptDebugKotlin.dependsOn dataBindingExportFeaturePackageIdsDebug
   kaptReleaseKotlin.dependsOn dataBindingExportFeaturePackageIdsRelease
   // and so on, if you have more variants
-}*/
+}
