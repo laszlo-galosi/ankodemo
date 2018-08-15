@@ -71,28 +71,68 @@ function run {
     ./mainframer.sh "docker run -i --rm -v android:/root/.android -v sdk:/android-sdk-linux -v gradle:/root/.gradle -v $PROJECT_DIR_ON_REMOTE_MACHINE:/project:rw --name $IMAGE_NAME $IMAGE_NAME /project/gradlew ${@:2} -p /project"
 }
 
-function gradlew {
-    echo "Executing gradle"
+function gradlew() {
     source ./mainframer-init.sh
-    syncBeforeRemoteCommand
-    case "$2" in
-        launch)
-            command="./mainframer.sh 'docker exec -i $IMAGE_NAME /project/gradlew ${@:3} -p /project -Dorg.gradle.daemon=true'"
-         ;;
-         *)
-            command="./mainframer.sh 'docker exec -i $IMAGE_NAME /project/gradlew ${@:2} -p /project -Dorg.gradle.daemon=true'"
-     esac
-     if ! $command; then
-        echo "$@ returned some error"
-     else
-        echo "$@ done."
-     fi
-     if [ "launch" == $2 ]; then
-        echo "Installing ${OUTPUT_APK_PATH}"
-        if eval "adb devices | tail -n +2 | cut -sf 1 | xargs -I X adb -s X install -r ${OUTPUT_APK_PATH}"; then
-            echo "Launching ${LAUNCHING_ACTIVITY}"
-            eval "adb shell am start -n ${LAUNCHING_ACTIVITY} -a android.intent.action.MAIN -c android.intent.category.LAUNCHER"
+    launch=""
+    device=""
+    sync=""
+    command=""
+   while [[ $# -gt 0 ]]; do
+        case "$1" in
+            gradlew)
+              shift
+              command="docker exec -i $IMAGE_NAME /project/gradlew $1 -p /project -Dorg.gradle.daemon=true"
+              ;;
+            -l | --launch)
+                shift
+                regex="^-."
+                if [[ $1 =~ $regex ]]; then
+                    launch="adb devices | tail -n +2 | cut -sf 1 | xargs -I X adb -s X"
+                else
+                    launch="adb -s $1"
+                fi
+                echo "launch device $launch"
+                ;;
+            -s | --sync)
+                sync="./gradlew app:generateDebugSources -Dorg.gradle.daemon=true"
+                ;;
+            -h | --help)
+                usage
+                exit
+                ;;
+            -* | --*)
+                echo "Invalid command line option: $1"
+                usage
+                exit
+                ;;
+            *)
+                ;;
+        esac
+        echo "arg: $1 : $#"
+     shift
+     done
+
+     if [ -n "$command"  ]; then
+        if ! ./mainframer.sh $command; then
+          printf "\n$command returned some error.\n" >&2;
+        else
+          echo "\n$command done.\n"
         fi
+    fi
+
+     if [ -n "$launch" ]; then
+          printf "\nInstalling ${OUTPUT_APK_PATH} to devices $launch...\n"
+          adb_command="adb devices | tail -n +2 | cut -sf 1 | xargs -I X"
+          if eval "$launch install -r ${OUTPUT_APK_PATH}"; then
+              printf "\nLaunching ${LAUNCHING_ACTIVITY}...\n"
+              eval "$launch shell am start -n ${LAUNCHING_ACTIVITY} -a android.intent.action.MAIN -c android.intent.category.LAUNCHER"
+              printf "Done."
+          fi
+     fi
+     if [ -n "$sync" ]; then
+        printf "\nExecuting $sync ...\n"
+        eval $sync
+        printf "\nDone."
      fi
 }
 
@@ -118,14 +158,19 @@ function prune {
 }
 
 function usage {
-    echo "Usage: $0 {build|run[ launch]|runbg|gradlew|exec[ launch]|prune}"
+    echo "Usage: $0 <COMMAND> <remote command | gradle task> [OPTIONS]"
+    echo "COMMAND:"
     echo "  build   - build docker image"
     echo "  run     - run <gralde task> create and execute the specified gradle task on the  docker container"
     echo "  runbg   - create and run the  docker container in the background (-d option)"
     echo "  gradlew - gradlew <gradle task name> execute the specified gradle task on an existing docker container"
     echo "  exec    - exec <command> execute the specified command on an existing docker container"
     echo "  prune   - stop all existing container (see docker container prune)"
-    echo "  launch  - install and launch the the app after gradlew built"
+    echo "OPTIONS:"
+    echo "--launch (-l) [device-id] - install and launch the result apk of the graldlew execution on"
+    echo "  specified or all connected device(s) (only with 'gradlew' command)"
+    echo "--sync   (-s) -  synclocal local sources after execution (only with 'gradlew' command)"
+    echo "--help   (-h) -  print this usage"
 
 }
 
@@ -145,9 +190,9 @@ case "$COMMAND" in
             exit 0
             ;;
         gradlew)
-            gradlew $@
-            exit 0
-            ;;
+          gradlew "$@"
+          exit 0
+          ;;
         exec)
             exec $@
             exit 0
