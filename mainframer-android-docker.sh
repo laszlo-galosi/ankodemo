@@ -74,7 +74,6 @@ function run {
 function gradlew() {
     source ./mainframer-init.sh
     launch=""
-    device=""
     sync=""
     command=""
    while [[ $# -gt 0 ]]; do
@@ -83,18 +82,17 @@ function gradlew() {
               shift
               command="docker exec -i $IMAGE_NAME /project/gradlew $1 -p /project -Dorg.gradle.daemon=true"
               ;;
+            -s | --sync)
+                sync="./gradlew app:generateDebugSources -Dorg.gradle.daemon=true"
+                ;;
             -l | --launch)
                 shift
-                regex="^-."
-                if [[ $1 =~ $regex ]]; then
+                if [ "$1" == "all" ]; then
                     launch="adb devices | tail -n +2 | cut -sf 1 | xargs -I X adb -s X"
                 else
                     launch="adb -s $1"
                 fi
                 echo "launch device $launch"
-                ;;
-            -s | --sync)
-                sync="./gradlew app:generateDebugSources -Dorg.gradle.daemon=true"
                 ;;
             -h | --help)
                 usage
@@ -108,9 +106,10 @@ function gradlew() {
             *)
                 ;;
         esac
-        echo "arg: $1 : $#"
+        #echo "arg: $1 : $#"
      shift
      done
+     #echo "launch: $launch, sync:$sync"
 
      if [ -n "$command"  ]; then
         if ! ./mainframer.sh $command; then
@@ -121,18 +120,19 @@ function gradlew() {
     fi
 
      if [ -n "$launch" ]; then
-          printf "\nInstalling ${OUTPUT_APK_PATH} to devices $launch...\n"
+          printf "\nInstalling ${OUTPUT_APK_PATH} to devices $launch $sync...\n"
           adb_command="adb devices | tail -n +2 | cut -sf 1 | xargs -I X"
           if eval "$launch install -r ${OUTPUT_APK_PATH}"; then
               printf "\nLaunching ${LAUNCHING_ACTIVITY}...\n"
-              eval "$launch shell am start -n ${LAUNCHING_ACTIVITY} -a android.intent.action.MAIN -c android.intent.category.LAUNCHER"
-              printf "Done."
+              if eval "$launch shell am start -n ${LAUNCHING_ACTIVITY} -a android.intent.action.MAIN -c android.intent.category.LAUNCHER"; then
+                printf "\nDone.\n"
+              fi
           fi
      fi
      if [ -n "$sync" ]; then
         printf "\nExecuting $sync ...\n"
         eval $sync
-        printf "\nDone."
+        printf "\nDone.\n"
      fi
 }
 
@@ -167,7 +167,7 @@ function usage {
     echo "  exec    - exec <command> execute the specified command on an existing docker container"
     echo "  prune   - stop all existing container (see docker container prune)"
     echo "OPTIONS:"
-    echo "--launch (-l) [device-id] - install and launch the result apk of the graldlew execution on"
+    echo "--launch (-l) [device-id|all] - install and launch the result apk of the graldlew execution on"
     echo "  specified or all connected device(s) (only with 'gradlew' command)"
     echo "--sync   (-s) -  synclocal local sources after execution (only with 'gradlew' command)"
     echo "--help   (-h) -  print this usage"
