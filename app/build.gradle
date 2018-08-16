@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
 
 android {
   compileSdkVersion 28
@@ -8,7 +9,7 @@ android {
 
   defaultConfig {
     applicationId "org.example.ankodemo"
-    minSdkVersion 16
+    minSdkVersion 18
     targetSdkVersion 28
     versionCode 1
     versionName "1.0"
@@ -68,9 +69,12 @@ dependencies {
   implementation "org.jetbrains.anko:anko-appcompat-v7:$anko_version"
   implementation "org.jetbrains.anko:anko-design:$anko_version"
   implementation "co.trikita:log:1.1.1"
-  implementation "org.jetbrains.anko:anko-design-coroutines:$anko_version"
-//  kapt "com.android.databinding:compiler:$gradle_plugin_version"
   kapt "androidx.databinding:databinding-compiler:$gradle_plugin_version"
+
+//  implementation 'androidx.appcompat:appcompat:1.0.0-beta01'
+//  implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha1'
+//  implementation 'com.google.android.material:material:1.0.0-beta01'
+    implementation 'com.android.support.constraint:constraint-layout:2.0.0-alpha1'
 }
 
 kotlin {
@@ -87,3 +91,5 @@ afterEvaluate {
   kaptReleaseKotlin.dependsOn dataBindingExportFeaturePackageIdsRelease
   // and so on, if you have more variants
 }
+
+apply plugin: 'kotlin-android-extensions'

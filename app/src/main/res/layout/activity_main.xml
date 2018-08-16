@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.motion.MotionLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/coordinator"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layoutDescription="@xml/collapsing_toolbar"
+    tools:context=".MainActivity"
+    tools:showPaths="true"
+    >
+  <android.support.v4.widget.NestedScrollView
+      android:id="@+id/scroll_view"
+      android:layout_width="0dp"
+      android:layout_height="0dp"
+      android:fillViewport="true"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/toolbar_image"
+      />
+  <ImageView
+      android:id="@+id/toolbar_image"
+      android:layout_width="0dp"
+      android:layout_height="200dp"
+      android:adjustViewBounds="true"
+      android:contentDescription="@null"
+      android:fitsSystemWindows="true"
+      android:scaleType="center"
+      android:background="@color/colorPrimaryDark"
+      android:src="@drawable/bg_gradient"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      />
+
+  <ImageView
+      android:id="@+id/logo"
+      android:layout_width="100dp"
+      android:layout_height="100dp"
+      android:layout_marginBottom="52dp"
+      android:layout_marginTop="8dp"
+      android:paddingBottom="8dp"
+      android:paddingEnd="8dp"
+      android:paddingStart="8dp"
+      android:paddingTop="8dp"
+      android:src="@drawable/kotlin"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintLeft_toLeftOf="parent"
+      app:layout_constraintRight_toRightOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="@+id/toolbar_image"
+      app:layout_constraintBottom_toBottomOf="@+id/toolbar_image"
+      />
+
+  <!--  <ImageView
+        android:id="@+id/btn_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="16dp"
+        android:paddingEnd="16dp"
+        android:paddingStart="16dp"
+        android:paddingTop="16dp"
+        android:src="@drawable/abc_ic_ab_back_material"
+        android:tint="?android:attr/textColorPrimary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />-->
+
+  <TextView
+      android:id="@+id/title"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="8dp"
+      android:layout_marginLeft="16dp"
+      android:layout_marginStart="16dp"
+      android:layout_marginTop="8dp"
+      android:text="@string/app_name"
+      android:textColor="?android:attr/textColorPrimary"
+      android:textSize="28sp"
+      android:textStyle="bold"
+      app:layout_constraintBottom_toBottomOf="@id/toolbar_image"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      />
+
+</android.support.constraint.motion.MotionLayout>
