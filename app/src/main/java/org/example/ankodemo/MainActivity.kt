@@ -12,6 +12,8 @@ import android.text.method.PasswordTransformationMethod
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import org.example.ankodemo.ankoviews.InflatedAnkoView
+import org.example.ankodemo.ankoviews.inflatedDataBindingAnkoView
 import org.example.ankodemo.util.Validations
 import org.jetbrains.anko.AnkoComponent
 import org.jetbrains.anko.AnkoContext
@@ -107,7 +109,7 @@ class MainActivityUi : AnkoComponent<MainActivity>, Validations.Callback {
                     hintText = resources.getString(R.string.name)
                 }
 
-                email = inflatedAnkoView(R.layout.widget_edit_field, {
+                email = inflatedDataBindingAnkoView(R.layout.widget_edit_field, {
                     id = R.id.field_email
                     with(viewBinding) {
                         setVariable(BR.fieldLabel, resources.getString(R.string.email))
@@ -118,7 +120,7 @@ class MainActivityUi : AnkoComponent<MainActivity>, Validations.Callback {
                     }
                 })
 
-                password = inflatedAnkoView(R.layout.widget_edit_field, {
+                password = inflatedDataBindingAnkoView(R.layout.widget_edit_field, {
                     id = R.id.field_password
                     with(viewBinding) {
                         setVariable(BR.fieldLabel, resources.getString(R.string.password))
