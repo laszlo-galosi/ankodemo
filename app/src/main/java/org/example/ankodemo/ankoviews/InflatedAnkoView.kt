@@ -1,10 +1,8 @@
 @file:Suppress("UNCHECKED_CAST")
 
-package org.example.ankodemo
+package org.example.ankodemo.ankoviews
 
 import android.content.Context
-import android.databinding.DataBindingUtil
-import android.databinding.ViewDataBinding
 import android.support.annotation.LayoutRes
 import android.view.LayoutInflater
 import android.view.ViewManager
@@ -15,27 +13,22 @@ import org.jetbrains.anko.custom.ankoView
 /**
  * Created by László Gálosi on 04/12/17
  */
-class InflatedAnkoView : FrameLayout {
+open class InflatedAnkoView : FrameLayout {
 
-    lateinit var viewBinding: ViewDataBinding
-
-    private fun init(@LayoutRes layoutRes: Int) = AnkoContext.createDelegate(this).apply {
+    open fun init(@LayoutRes layoutRes: Int) = AnkoContext.createDelegate(this).apply {
         if (layoutRes > 0) {
-            viewBinding = DataBindingUtil.inflate(LayoutInflater.from(context), layoutRes,
-                    this@InflatedAnkoView, false)
-            viewBinding.executePendingBindings()
-            addView(viewBinding.root)
+            addView(LayoutInflater.from(context).inflate(layoutRes, this@InflatedAnkoView, false))
         }
         bind()
     }
 
     fun bind() {}
 
-    constructor(context: Context?) : super(context) {
+    constructor(context: Context) : super(context) {
         init(0)
     }
 
-    constructor(context: Context?, @LayoutRes layoutRes: Int) : super(context) {
+    constructor(context: Context, @LayoutRes layoutRes: Int) : super(context) {
         init(layoutRes)
     }
 }
