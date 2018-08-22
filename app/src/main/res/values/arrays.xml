@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <integer-array name="tut_icon_keys">
+    <item>1</item>
+    <item>2</item>
+    <item>3</item>
+    <item>4</item>
+    <item>5</item>
+    <item>6</item>
+    <item>7</item>
+  </integer-array>
+
+  <integer-array name="tut_icons">
+    <item>@drawable/ic_nav_tracking</item>
+    <item>@drawable/ic_nav_coupons</item>
+    <item>@drawable/ic_nav_insurance</item>
+    <item>@drawable/ic_nav_service</item>
+    <item>@drawable/ic_nav_service</item>
+    <item>@drawable/ic_nav_bikephoto</item>
+    <item>@drawable/ic_nav_profile</item>
+  </integer-array>
+</resources>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (C) 2016 Extremenet Ltd., All Rights Reserved
+  ~ Unauthorized copying of this file, via any medium is strictly prohibited.
+  ~  Proprietary and confidential.
+  ~  All information contained herein is, and remains the property of Extremenet Ltd.
+  ~  The intellectual and technical concepts contained herein are proprietary to Extremenet Ltd.
+  ~   and may be covered by U.S. and Foreign Patents, pending patents, and are protected
+  ~  by trade secret or copyright law. Dissemination of this information or reproduction of
+  ~  this material is strictly forbidden unless prior written permission is obtained from
+  ~   Extremenet Ltd.
+  ~
+  -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:viewportWidth="20"
+    android:viewportHeight="23"
+    android:width="20dp"
+    android:height="23dp">
+  <group
+      android:translateX="-220"
+      android:translateY="-628">
+    <group
+        android:translateY="618">
+      <path
+          android:pathData="M237.61 29.38088c0 0.742 -0.604 1.346 -1.346 1.346l-12.718 0c-0.7424 0 -1.346 -0.604 -1.346 -1.346l0 -8.044c0 -0.7424 0.6036 -1.346 1.346 -1.346l12.718 0c0.742 0 1.346 0.6036 1.346 1.346l0 8.044zm-11.2052 -14.2808c0 -1.93 1.5704 -3.5 3.5 -3.5 1.93 0 3.5 1.57 3.5 3.5l0 3.5952 -7 0 0 -3.5952zm9.8592 3.6908l-1.6592 0 0 -3.6908c0 -2.596 -2.104 -4.7 -4.7 -4.7 -2.5956 0 -4.7 2.104 -4.7 4.7l0 3.6908 -1.6588 0c-1.404 0 -2.546 1.142 -2.546 2.546l0 8.044c0 1.404 1.142 2.546 2.546 2.546l12.718 0c1.404 0 2.546 -1.142 2.546 -2.546l0 -8.044c0 -1.404 -1.142 -2.546 -2.546 -2.546l0 0zm-6.35908 3.88468c-0.5064 0 -0.9168 0.4104 -0.9168 0.9168l0 3.5332c0 0.5064 0.4104 0.9168 0.9168 0.9168 0.5064 0 0.9168 -0.4104 0.9168 -0.9168l0 -3.5332c0 -0.5064 -0.4104 -0.9168 -0.9168 -0.9168"
+          android:strokeWidth="0.5"
+          android:fillColor="#ffffff"
+          android:strokeColor="#ffffff"/>
+    </group>
+  </group>
+</vector>

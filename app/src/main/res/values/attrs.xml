@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <declare-styleable name="KeyedImageView">
+    <attr name="drawableKeys" format="reference"/>
+    <attr name="drawableValues" format="reference"/>
+    <attr name="currentKey" format="reference"/>
+  </declare-styleable>
+
+  <declare-styleable name="ViewPagerMotionLayout">
+    <attr name="motionSpeedFactor" format="float"/>
+  </declare-styleable>
+
+  <declare-styleable name="InflatedAnkoView">
+    <attr name="layout" format="reference"/>
+  </declare-styleable>
+</resources>

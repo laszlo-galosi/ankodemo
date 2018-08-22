@@ -2,6 +2,7 @@ package org.example.ankodemo.util;
 
 import android.databinding.BindingAdapter;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.support.design.widget.TextInputLayout;
 import android.view.View;
 import android.widget.ImageView;
@@ -13,6 +14,21 @@ public class DataBindingHelpers {
     @BindingAdapter("srcCompat")
     public static void bindSrcCompat(ImageView imageView, Drawable drawable) {
         imageView.setImageDrawable(drawable);
+    }
+
+    @BindingAdapter("android:src")
+    public static void bindImageUri(ImageView view, Uri imageUri) {
+        view.setImageURI(imageUri);
+    }
+
+    @BindingAdapter("android:src")
+    public static void bindImageDrawable(ImageView view, Drawable drawable) {
+        view.setImageDrawable(drawable);
+    }
+
+    @BindingAdapter("android:src")
+    public static void bindImageResource(ImageView imageView, int resource) {
+        imageView.setImageResource(resource);
     }
 
     @BindingAdapter("passwordToggleEnabled")

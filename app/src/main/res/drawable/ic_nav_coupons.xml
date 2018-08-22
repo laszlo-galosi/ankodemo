@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (C) 2016 Extremenet Ltd., All Rights Reserved
+  ~ Unauthorized copying of this file, via any medium is strictly prohibited.
+  ~  Proprietary and confidential.
+  ~  All information contained herein is, and remains the property of Extremenet Ltd.
+  ~  The intellectual and technical concepts contained herein are proprietary to Extremenet Ltd.
+  ~   and may be covered by U.S. and Foreign Patents, pending patents, and are protected
+  ~  by trade secret or copyright law. Dissemination of this information or reproduction of
+  ~  this material is strictly forbidden unless prior written permission is obtained from
+  ~   Extremenet Ltd.
+  ~
+  -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:viewportWidth="33"
+    android:viewportHeight="24"
+    android:width="33dp"
+    android:height="24dp">
+  <group
+      android:translateX="-124"
+      android:translateY="-626">
+    <group
+        android:translateY="618">
+      <path
+          android:pathData="M133.89738 13.134484c-1.38965 0 -2.52081 -1.152 -2.52081 -2.567242C131.37657 9.152 132.50773 8 133.89738 8c1.38964 0 2.5208 1.152 2.5208 2.567242 0 1.415242 -1.13116 2.567242 -2.5208 2.567242m0 -3.425305c-0.46487 0 -0.84255 0.384632 -0.84255 0.858063 0 0.473432 0.37768 0.858063 0.84255 0.858063 0.46486 0 0.84254 -0.384631 0.84254 -0.858063 0 -0.473431 -0.37768 -0.858063 -0.84254 -0.858063m6.71325 17.09573c-0.46326 0 -0.83919 -0.382863 -0.83919 -0.854652l0 -5.124253c0 -1.319495 0.97513 -2.637347 2.22213 -3.001389l2.51746 -0.733263 -5.47125 -3.715832 -2.86996 2.924463c-0.15776 0.158905 -0.37097 0.2496 -0.59411 0.2496l-3.36 0c-0.46325 0 -0.83919 -0.382863 -0.83919 -0.854652 0 -0.47179 0.37594 -0.854653 0.83919 -0.854653l3.01259 0 3.10983 -3.168884c0.28366 -0.287116 0.72682 -0.331579 1.0591 -0.105979l6.15603 4.179031c0.92304 0.627285 0.9197 1.363958 0.87604 1.6512 -0.0435 0.287116 -0.26183 0.989558 -1.32751 1.300674l-2.6467 0.770905c-0.527 0.153853 -1.00527 0.8016 -1.00527 1.358779l0 5.124253c0 0.471789 -0.37594 0.854652 -0.83919 0.854652m9.23073 5.127689c-3.70232 0 -6.7133 -3.066316 -6.7133 -6.836969 0 -3.770526 3.01098 -6.836842 6.7133 -6.836842 3.70233 0 6.71331 3.066316 6.71331 6.836842 0 3.770653 -3.01098 6.836969 -6.71331 6.836969m0 -11.964632c-2.77593 0 -5.03491 2.30059 -5.03491 5.127663 0 2.827074 2.25898 5.12779 5.03491 5.12779 2.77594 0 5.03492 -2.300716 5.03492 -5.12779 0 -2.827073 -2.25898 -5.127663 -5.03492 -5.127663m-18.46313 11.964632c-3.70071 0 -6.71156 -3.066316 -6.71156 -6.8352 0 -3.768884 3.01085 -6.8352 6.71156 -6.8352 3.70072 0 6.71157 3.066316 6.71157 6.8352 0 3.768884 -3.01085 6.8352 -6.71157 6.8352m0 -11.961221c-2.77594 0 -5.0333 2.298947 -5.0333 5.126021 0 2.827074 2.25736 5.126021 5.0333 5.126021 2.77594 0 5.0333 -2.298947 5.0333 -5.126021 0 -2.827074 -2.25736 -5.126021 -5.0333 -5.126021"
+          android:fillColor="#ffffff"/>
+    </group>
+  </group>
+</vector>

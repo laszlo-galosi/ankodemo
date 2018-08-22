@@ -1,5 +1,5 @@
 <resources>
-  <string name="app_name">Anko Demo</string>
+  <string name="app_name">Motion Demo</string>
   <string name="name">Name</string>
   <string name="password">Password</string>
   <string name="action_done">Done</string>
@@ -10,4 +10,22 @@
   <string name="error_field_length_equal">Field must be exactly %d characters long.</string>
   <string name="error_field_invalid_email">Invalid e-mail address.</string>
   <string name="error_field_invalid_password">Invalid password.</string>
+  <string name="label_lets_start">Got It</string>
+  <string name="page_start_stop">Start/Stop</string>
+  <string name="details_tut01">Ezzel a fukncióval tudod mérni a kerékpároddal megtett távolságot</string>
+  <string name="page_coupons">Akciók</string>
+  <string name="details_tut02">Itt tudod megtekinteni az applikációban elérhető kuponokat</string>
+  <string name="page_insurance">Biztosítás</string>
+  <string name="details_tut03">Itt tudod új biztosításod megkötni, valamint esetleges károdat bejelenteni</string>
+  <string name="page_service">Szerviz</string>
+  <string name="details_tut04">Itt tudsz azonalli helyszíni segítséget kérni, vagy szervízidőpontot
+  foglalni</string>
+  <string name="page_door_to_door">Háztól-házig segítség</string>
+  <string name="details_tut05">Elmegyünk a bringádért, elvisszük, megszereljük, és vissza is hozzuk</string>
+  <string name="page_bikephoto">Bringafotó</string>
+  <string name="details_tut06">Itt készíthetsz fotót a lelakatolt kerékpárodról, ami hasznos lehet a bringakereső funkcióhoz, valamint amire a kárbejelentésnél szükséged lesz</string>
+  <string name="page_profile">Profilom</string>
+  <string name="details_tut07">Itt tudod megadni, valamint karbantartani a személyes adataidat</string>
+  <string name="label_welcome"><h1>Üdvözlünk a Hello bringás alkalmazásban!</h1> <br/> <p>Először is hadd mutassuk be hogyan használhatod az alkalmazást.</p></string>
+  <string name="page_num">%d.</string>
 </resources>

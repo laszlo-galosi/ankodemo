@@ -67,6 +67,6 @@ class MainActivity : AppCompatActivity() {
 
 class MainActivityUI : AnkoComponent<MainActivity> {
     override fun createView(ui: AnkoContext<MainActivity>) = with(ui) {
-        inflatedAnkoView(R.layout.activity_main, {})
+        inflatedAnkoView(R.layout.activity_main)
     }
 }

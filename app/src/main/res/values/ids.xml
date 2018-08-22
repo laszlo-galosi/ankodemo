@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <item name="main_content" type="id"/>
   <item name="scroll_view" type="id"/>
   <item name="field_name" type="id"/>
   <item name="field_email" type="id"/>
   <item name="field_password" type="id"/>
+  <item name="tut_page_1" type="id"/>
+  <item name="tut_page_2" type="id"/>
+  <item name="tut_page_3" type="id"/>
+  <item name="tut_page_4" type="id"/>
+  <item name="tut_page_5" type="id"/>
+  <item name="tut_page_6" type="id"/>
+  <item name="tut_page_7" type="id"/>
+  <item name="tut_content" type="id"/>
 </resources>
