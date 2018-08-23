@@ -12,12 +12,15 @@ import android.support.constraint.motion.MotionLayout
 import android.support.v4.view.PagerAdapter
 import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.AppCompatButton
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.activity_tutorial.btn_close
 import kotlinx.android.synthetic.main.activity_tutorial.motionLayout
 import kotlinx.android.synthetic.main.activity_tutorial.viewPager
+import kotlinx.android.synthetic.main.widget_bike.bikeLayout
+import kotlinx.android.synthetic.main.widget_lets_start.button_content
 import org.example.ankodemo.TutorialActivity.Page
 import org.example.ankodemo.ankoviews.AnkoViewProvider
 import org.example.ankodemo.ankoviews.inflatedDataBindingAnkoView
@@ -94,6 +97,10 @@ class TutorialActivity : AppCompatActivity(), ViewPager.OnPageChangeListener {
         pageList
     }
 
+    private val startButton: AppCompatButton by lazy {
+        motionLayout.findViewById<AppCompatButton>(R.id.lets_start)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
@@ -101,15 +108,24 @@ class TutorialActivity : AppCompatActivity(), ViewPager.OnPageChangeListener {
         viewPager.adapter = pageAdapter
         viewPager.currentItem = 0
         viewPager.addOnPageChangeListener(this)
-        btn_close.onClick {
+        viewPager.addOnPageChangeListener(bikeLayout)
+        val startAction = {
             startActivity(intentFor<MainActivity>())
             finish()
+        }
+        startButton.visibility = View.INVISIBLE
+        startButton.onClick {
+            startAction.invoke()
+        }
+        btn_close.onClick {
+            startAction.invoke()
         }
     }
 
     override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
 //        motionLayout.progress = positionOffset * 1.65f/* / (numPages - 1)*/
-//        val pageIndex = if (positionOffset > 0.5) Math.min(position + 1, pages.size - 1) else position
+        val pageIndex = if (positionOffset > 0.5) Math.min(position + 1,
+                pages.size - 1) else position
 //        activityUI.viewBinding.setVariable(BR.page, pages[pageIndex])
         val alpha = if (positionOffset > 0.5) 1.0f - positionOffset * 1.5f else 1.0f
         activityUI.viewBinding.setVariable(BR.progress, Math.max(0.0f, alpha))
@@ -122,9 +138,21 @@ class TutorialActivity : AppCompatActivity(), ViewPager.OnPageChangeListener {
 
     override fun onPageSelected(position: Int) {
         //Execute transitions when the page changes
+        Log.d("onPageSelected", position)
         motionLayout.transitionToStart()
         motionLayout.transitionToEnd()
         //Set the page data binding variable to display the selected page icon, title, details.
+        when {
+            position == (pages.size - 1) -> {
+                startButton.visibility = View.VISIBLE
+                button_content.transitionToStart()
+                button_content.transitionToEnd()
+            }
+            else -> {
+                button_content.transitionToStart()
+                startButton.visibility = View.INVISIBLE
+            }
+        }
         activityUI.viewBinding.setVariable(BR.page, pages[position])
         activityUI.viewBinding.executePendingBindings()
     }

@@ -119,14 +119,15 @@ function executeRemoteCommand {
     duration="$((endTime-startTime))"
 
     if [ "$REMOTE_COMMAND_SUCCESSFUL" == "true" ]; then
-        echo "Execution donse: took $(formatTime $duration)."
+        echo "Execution done: took $(formatTime $duration)."
     else
-        echo "Execution faileds: took $(formatTime $duration)."
+        echo "Execution failed: took $(formatTime $duration)."
     fi
     endDate="$(date '+%Y-%m-%d %H:%M:%S')"
+    lastCommand="$endDate $REMOTE_COMMAND $REMOTE_COMMAND_SUCCESSFUL"
     lastCommandFile=$PROJECT_DIR_ON_REMOTE_MACHINE$REMOTE_LAST_COMMAND_FILE
-    if ssh "$REMOTE_MACHINE" "echo 'set -e && cd '$PROJECT_DIR_ON_REMOTE_MACHINE' && echo \"Writing result $REMOTE_COMMAND_SUCCESSFUL to $lastCommandFile\" && eval echo $endDate $REMOTE_COMMAND $REMOTE_COMMAND_SUCCESSFUL > $lastCommandFile' | bash" ; then
-        echo "Remote exit writtten."
+    if ssh "$REMOTE_MACHINE" "echo 'set -e && cd '$PROJECT_DIR_ON_REMOTE_MACHINE' && echo \"Writing result $lastCommand to $lastCommandFile\" && eval echo $endDate $REMOTE_COMMAND $REMOTE_COMMAND_SUCCESSFUL > $lastCommandFile' | bash" ; then
+        echo "Remote exit written."
     fi
     echo ""
 }

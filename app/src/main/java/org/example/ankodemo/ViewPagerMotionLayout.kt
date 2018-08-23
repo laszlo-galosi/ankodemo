@@ -33,11 +33,11 @@ class ViewPagerMotionLayout @JvmOverloads constructor(context: Context, attrs: A
     override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
 //        Set the progress regarding the view pager number of pages, if you want the transition
 //        follow the the current selected page
-//        val numPages = 3
-//        progress = positionOffset / (numPages - 1)
+        val numPages = 7
+        progress = (position + positionOffset) / (numPages - 1)
 //        Set the progress of the transition multiplied with a factor to faster transition as the user
 //       scrolled .
-        progress = positionOffset * motionSpeedFactor
+//        progress = positionOffset * motionSpeedFactor
         Log.d("onPageScrolled", position, positionOffset, positionOffsetPixels, progress)
     }
 
