@@ -111,12 +111,20 @@ function gradlew() {
      done
      #echo "launch: $launch, sync:$sync"
 
+     exit=1
      if [ -n "$command"  ]; then
         if ! ./mainframer.sh $command; then
           printf "\n$command returned some error.\n" >&2;
         else
+          exit= 0
           echo "\n$command done.\n"
         fi
+    fi
+
+    result=`awk 'END {print $NF}' $(PWD)$REMOTE_LAST_COMMAND_FILE`
+    echo "Remote command success: $result"
+    if [ "$result" != "true" ]; then
+      exit 1
     fi
 
      if [ -n "$launch" ]; then

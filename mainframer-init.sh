@@ -27,6 +27,7 @@ CONFIG_FILE="$CONFIG_DIR/config"
 COMMON_IGNORE_FILE="$CONFIG_DIR/ignore"
 LOCAL_IGNORE_FILE="$CONFIG_DIR/localignore"
 REMOTE_IGNORE_FILE="$CONFIG_DIR/remoteignore"
+REMOTE_LAST_COMMAND_FILE="/last_command_exit.txt"
 
 function readConfigProperty {
     grep "^${1}=" "$CONFIG_FILE" | cut -d'=' -f2
@@ -104,7 +105,7 @@ function syncBeforeRemoteCommand {
 function executeRemoteCommand {
     echo "Executing command on remote machine…"
     echo ""
-    startTime="$(date +%s)">{]
+    startTime="$(date +%s)"
 
     set +e
     if ssh "$REMOTE_MACHINE" "echo 'set -e && cd '$PROJECT_DIR_ON_REMOTE_MACHINE' && echo \"$REMOTE_COMMAND\" && echo "" && $REMOTE_COMMAND' | bash" ; then
@@ -118,11 +119,15 @@ function executeRemoteCommand {
     duration="$((endTime-startTime))"
 
     if [ "$REMOTE_COMMAND_SUCCESSFUL" == "true" ]; then
-        echo "Execution done: took $(formatTime $duration)."
+        echo "Execution donse: took $(formatTime $duration)."
     else
-        echo "Execution failed: took $(formatTime $duration)."
+        echo "Execution faileds: took $(formatTime $duration)."
     fi
-
+    endDate="$(date '+%Y-%m-%d %H:%M:%S')"
+    lastCommandFile=$PROJECT_DIR_ON_REMOTE_MACHINE$REMOTE_LAST_COMMAND_FILE
+    if ssh "$REMOTE_MACHINE" "echo 'set -e && cd '$PROJECT_DIR_ON_REMOTE_MACHINE' && echo \"Writing result $REMOTE_COMMAND_SUCCESSFUL to $lastCommandFile\" && eval echo $endDate $REMOTE_COMMAND $REMOTE_COMMAND_SUCCESSFUL > $lastCommandFile' | bash" ; then
+        echo "Remote exit writtten."
+    fi
     echo ""
 }
 
