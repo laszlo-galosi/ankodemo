@@ -2,7 +2,9 @@ package org.example.ankodemo
 
 import android.content.Context
 import android.databinding.ViewDataBinding
+import android.graphics.drawable.Drawable
 import android.support.annotation.ColorRes
+import android.support.annotation.DrawableRes
 import android.support.annotation.IdRes
 import android.support.v4.content.ContextCompat
 import android.text.Html
@@ -46,3 +48,5 @@ fun ViewGroup.touchedViewsFor(event: MotionEvent?): Sequence<View> {
             }
 }
 
+fun Context.toDrawable(@DrawableRes resource: Int): Drawable? = ContextCompat.getDrawable(this,
+        resource)

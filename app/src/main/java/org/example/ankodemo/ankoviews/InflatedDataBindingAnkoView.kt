@@ -32,7 +32,6 @@ class InflatedDataBindingAnkoView(context: Context, @LayoutRes layoutRes: Int = 
 }
 
 @Suppress("NOTHING_TO_INLINE")
-inline fun ViewManager.inflatedDataBindingAnkoView(@LayoutRes layoutRes: Int,
-        init: InflatedDataBindingAnkoView.() -> Unit,
-        theme: Int = 0) = ankoView(
+inline fun ViewManager.inflatedDataBindingAnkoView(@LayoutRes layoutRes: Int, theme: Int = 0,
+        init: InflatedDataBindingAnkoView.() -> Unit = {}) = ankoView(
         { InflatedDataBindingAnkoView(it, layoutRes) }, theme, init)

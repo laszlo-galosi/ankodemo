@@ -7,7 +7,7 @@
       app:constraintSetStart="@id/expanded">
     <OnSwipe
         app:dragDirection="dragUp"
-        app:touchAnchorId="@id/scroll_view"
+        app:touchAnchorId="@id/scrollable"
         app:touchAnchorSide="top"/>
     <KeyFrameSet>
       <KeyAttribute
@@ -24,6 +24,20 @@
             app:attributeName="imageAlpha"
             app:customIntegerValue="0"/>
       </KeyAttribute>
+      <KeyAttribute
+          app:framePosition="50"
+          app:target="@id/logo">
+        <CustomAttribute
+            app:attributeName="Crossfade"
+            app:customFloatValue="0.0"/>
+      </KeyAttribute>
+      <KeyAttribute
+          app:framePosition="90"
+          app:target="@id/logo">
+        <CustomAttribute
+            app:attributeName="Crossfade"
+            app:customFloatValue="1.0"/>
+      </KeyAttribute>
     </KeyFrameSet>
   </Transition>
 
@@ -31,28 +45,31 @@
     <Constraint
         android:id="@id/toolbar_image"
         android:layout_height="240dp"
+        android:elevation="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:elevation="0dp"
         >
     </Constraint>
     <Constraint
         android:id="@id/logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingBottom="8dp"
-        android:paddingEnd="8dp"
-        android:paddingStart="8dp"
-        android:paddingTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:scaleX="1.0"
         android:scaleY="1.0"
-        android:src="@drawable/kotlin"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar_image"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/toolbar_image"
-        app:layout_constraintBottom_toBottomOf="@+id/toolbar_image"
-        />
+        >
+      <CustomAttribute
+          app:attributeName="Crossfade"
+          app:customFloatValue="0.0"/>
+    </Constraint>
 
     <Constraint
         android:id="@id/title"
@@ -80,31 +97,39 @@
 
     <Constraint
         android:id="@id/logo"
-        android:layout_width="?attr/actionBarSize"
-        android:layout_height="?attr/actionBarSize"
-        android:paddingBottom="4dp"
-        android:paddingEnd="4dp"
-        android:paddingStart="4dp"
-        android:paddingTop="4dp"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
         android:scaleX="1.0"
         android:scaleY="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/toolbar_image"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginBottom="0dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginRight="0dp"
         app:layout_constraintBottom_toBottomOf="@+id/toolbar_image"
-        />
+        app:layout_constraintTop_toTopOf="@+id/toolbar_image"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/title"
+        >
+      <CustomAttribute
+          app:attributeName="Crossfade"
+          app:customFloatValue="1.0"/>
+    </Constraint>
     <Constraint
         android:id="@id/title"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="left|center_vertical"
         android:layout_marginBottom="0dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginStart="0dp"
+        android:gravity="left|center_vertical"
         android:scaleX="0.75"
         android:scaleY="0.75"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar_image"
         app:layout_constraintStart_toEndOf="@+id/logo"
         app:layout_constraintTop_toTopOf="@+id/toolbar_image"
-        app:layout_constraintBottom_toBottomOf="@+id/toolbar_image"
         />
 
   </ConstraintSet>

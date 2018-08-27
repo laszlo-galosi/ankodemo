@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--app:layout_scrollFlags="scroll|enterAlways|snap|exitUntilCollapsed"-->
+<!--app:layoutDescription="@xml/collapsing_toolbar"-->
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+  <data>
+    <variable
+        name="title"
+        type="String"
+        />
+    <variable
+        name="background"
+        type="android.graphics.drawable.Drawable"
+        />
+    <variable
+        name="logo"
+        type="android.graphics.drawable.Drawable"
+        />
+
+    <variable
+        name="navIcon"
+        type="android.graphics.drawable.Drawable"
+        />
+  </data>
+  <android.support.constraint.motion.MotionLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:background="@color/colorPrimary"
+      android:minHeight="?attr/actionBarSize"
+      app:layoutDescription="@xml/collapsing_toolbar"
+      >
+
+
+    <ImageView
+        android:id="@+id/toolbar_image"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/app_bar_height"
+        android:adjustViewBounds="true"
+        android:background="@drawable/bg_toolbar"
+        android:contentDescription="@null"
+        android:elevation="2dp"
+        android:fitsSystemWindows="true"
+        android:scaleType="centerCrop"
+        android:src="@{background}"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/bringas_header"
+        />
+    <include
+        layout="@layout/widget_content_scrolling"
+        android:id="@+id/scrollable"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar_image"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
+    <android.support.constraint.utils.DataBindingImageFilterView
+        android:id="@+id/logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="52dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
+        android:src="@{logo}"
+        app:altSrc="@{navIcon}"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar_image"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/toolbar_image"
+        tools:src="@drawable/hello_logo"
+        />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="@{title}"
+        android:textColor="?android:attr/textColorPrimary"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/toolbar_image"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="@string/app_name"
+        />
+  </android.support.constraint.motion.MotionLayout>
+</layout>

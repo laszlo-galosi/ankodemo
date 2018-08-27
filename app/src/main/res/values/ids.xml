@@ -12,4 +12,5 @@
   <item name="tut_page_6" type="id"/>
   <item name="tut_page_7" type="id"/>
   <item name="tut_content" type="id"/>
+  <item name="app_bar" type="id"/>
 </resources>

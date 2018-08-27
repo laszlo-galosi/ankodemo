@@ -43,7 +43,6 @@ open class InflatedAnkoView(context: Context, @LayoutRes var layoutRes: Int = 0,
 }
 
 @Suppress("NOTHING_TO_INLINE")
-inline fun ViewManager.inflatedAnkoView(@LayoutRes layoutRes: Int,
-        init: InflatedAnkoView.() -> Unit = {},
-        theme: Int = 0) = ankoView(
+inline fun ViewManager.inflatedAnkoView(@LayoutRes layoutRes: Int, theme: Int = 0,
+        init: InflatedAnkoView.() -> Unit = {}) = ankoView(
         { InflatedAnkoView(it, layoutRes) }, theme, init)

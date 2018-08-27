@@ -1,68 +1,64 @@
 package org.example.ankodemo
 
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.support.v4.view.GravityCompat
 import android.support.v4.widget.NestedScrollView
 import android.support.v7.app.AppCompatActivity
-import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
+import android.view.View
+import kotlinx.android.synthetic.main.activity_main.drawerLayout
 import org.example.ankodemo.ankoviews.inflatedAnkoView
 import org.jetbrains.anko.AnkoComponent
 import org.jetbrains.anko.AnkoContext
-import org.jetbrains.anko.activityUiThreadWithContext
-import org.jetbrains.anko.applyRecursively
-import org.jetbrains.anko.backgroundColorResource
-import org.jetbrains.anko.backgroundResource
-import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.internals.AnkoInternals
 import org.jetbrains.anko.setContentView
-import org.jetbrains.anko.startActivity
-import org.jetbrains.anko.toast
-import trikita.log.Log
 
-class MainActivity : AppCompatActivity() {
-    val customStyle = { v: Any ->
-        when (v) {
-            is Button -> {
-                v.textSize = 26f
-                v.backgroundColorResource = R.color.colorAccent
-            }
-//            is TextView -> v.textColorResource = android.R.color.white
-            is EditText -> v.textSize = 20f
-            is ViewGroup -> v.backgroundResource = R.color.colorPrimary
+class MainActivity : AppCompatActivity(), AppbarUI.Callback {
+    private val activityUI: MainActivityUI by lazy {
+        MainActivityUI()
+    }
+
+    private var appbarView: View? = null
+
+    private val loginFromUI: LoginFormUI by lazy {
+        LoginFormUI(this)
+    }
+
+    private val scrollContent: NestedScrollView? by lazy {
+        appbarView?.findViewById<NestedScrollView>(R.id.scrollable)
+    }
+
+    @SuppressLint("RestrictedApi")
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        activityUI.setContentView(this)
+        appbarView = AppbarUI(this, callback = this).view
+        scrollContent?.let {
+            AnkoInternals.addView(it, RichView(this))
         }
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        val mainActivityUI = MainActivityUI()
-        mainActivityUI.setContentView(this)
-        val ctx = AnkoContext.create(MainActivity@ this, MainActivity@ this)
-        val loginFormUI = ctx.loginForm {
-            cbOnValidated = { user, passw -> tryLogin(ctx, user, passw) }
-        }.applyRecursively(customStyle)
-        AnkoInternals.addView(findViewById<NestedScrollView>(R.id.scroll_view), loginFormUI)
-
-    }
-
-    fun tryLogin(ui: AnkoContext<MainActivity>, name: CharSequence?, password: CharSequence?) {
-        ui.doAsync {
-            Thread.sleep(500)
-
-            activityUiThreadWithContext {
-                Log.d("tryLogin", name, password)
-                if (checkCredentials(name.toString(), password.toString())) {
-                    toast("Logged in! :)")
-                    startActivity<CountriesActivity>()
-                } else {
-                    toast("Wrong password :( Enter:password")
+    override fun onNavigationIconClicked(v: View, crossfade: Float) {
+        if (crossfade >= 1.0f) {
+            if (shouldGoback()) {
+                onBackPressed()
+            } else {
+                if (!drawerLayout.isDrawerOpen(GravityCompat.START)) {
+                    drawerLayout.openDrawer(GravityCompat.START)
                 }
             }
         }
     }
 
-    private fun checkCredentials(name: String,
-            password: String) = name == "user" && password == "password"
+    override fun onBackPressed() {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START)
+        } else {
+            super.onBackPressed()
+        }
+    }
+
+    fun AppCompatActivity.shouldGoback() = this.supportFragmentManager.backStackEntryCount > 1
 }
 
 class MainActivityUI : AnkoComponent<MainActivity> {
@@ -70,3 +66,5 @@ class MainActivityUI : AnkoComponent<MainActivity> {
         inflatedAnkoView(R.layout.activity_main)
     }
 }
+
+

@@ -13,4 +13,6 @@
   <style name="FieldError">
     <item name="android:textColor">@color/field_error_color</item>
   </style>
+
+  <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
 </resources>

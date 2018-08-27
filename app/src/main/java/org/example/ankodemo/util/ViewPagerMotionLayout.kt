@@ -1,9 +1,10 @@
-package org.example.ankodemo
+package org.example.ankodemo.util
 
 import android.content.Context
 import android.support.constraint.motion.MotionLayout
 import android.support.v4.view.ViewPager
 import android.util.AttributeSet
+import org.example.ankodemo.R.styleable
 import trikita.log.Log
 
 /**
@@ -22,8 +23,10 @@ class ViewPagerMotionLayout @JvmOverloads constructor(context: Context, attrs: A
     var motionSpeedFactor: Float = 1.0f
 
     init {
-        val a = context.obtainStyledAttributes(attrs, R.styleable.ViewPagerMotionLayout)
-        motionSpeedFactor = a.getFloat(R.styleable.ViewPagerMotionLayout_motionSpeedFactor, 1.0f)
+        val a = context.obtainStyledAttributes(attrs,
+                styleable.ViewPagerMotionLayout)
+        motionSpeedFactor = a.getFloat(
+                styleable.ViewPagerMotionLayout_motionSpeedFactor, 1.0f)
         a.recycle()
     }
 

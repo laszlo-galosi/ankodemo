@@ -90,7 +90,7 @@ class Validations(private val mContext: Context) {
     fun isValidPassword(value: Any): Validations {
         checks()
         return if (isNotEmpty(value).result) {
-            lengthGreaterThan(value, 6)
+            lengthGreaterThan(value, 5)
             ///if (lengthGreaterThan(value, 6).getResult()) {
             //String pattern = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}";
             //matches(value, pattern, mContext.getString(R.string.error_field_invalid_password));

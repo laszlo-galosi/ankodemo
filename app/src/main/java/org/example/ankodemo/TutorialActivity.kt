@@ -110,7 +110,7 @@ class TutorialActivity : AppCompatActivity(), ViewPager.OnPageChangeListener {
         viewPager.addOnPageChangeListener(this)
         viewPager.addOnPageChangeListener(bikeLayout)
         val startAction = {
-            startActivity(intentFor<MainActivity>())
+            startActivity(intentFor<LoginActivity>())
             finish()
         }
         startButton.visibility = View.INVISIBLE
@@ -162,12 +162,12 @@ class TutorialActivityUI : AnkoComponent<TutorialActivity> {
     lateinit var viewBinding: ViewDataBinding
 
     override fun createView(ui: AnkoContext<TutorialActivity>) = with(ui) {
-        inflatedDataBindingAnkoView(R.layout.activity_tutorial, {
+        inflatedDataBindingAnkoView(R.layout.activity_tutorial) {
             id = R.id.tut_content
             viewBinding.setVariable(BR.page, ui.owner.firstPage)
             viewBinding.setVariable(BR.progress, 1.0f)
             this@TutorialActivityUI.viewBinding = this.viewBinding
-        })
+        }
     }
 }
 
@@ -179,10 +179,10 @@ class TutorialPageUI(val page: Page, ctx: Context) : View(ctx), AnkoComponent<Vi
     }
 
     override fun createView(ui: AnkoContext<View>): View = with(ui) {
-        inflatedDataBindingAnkoView(R.layout.widget_tutorial_page, {
+        inflatedDataBindingAnkoView(R.layout.widget_tutorial_page) {
             id = page.id
             viewBinding.setVariable(BR.page, page)
-        })
+        }
     }
 }
 

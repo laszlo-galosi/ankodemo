@@ -1,0 +1,19 @@
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/coordinator"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:fitsSystemWindows="false"
+    >
+  <android.support.v7.widget.ViewStubCompat
+      android:id="@+id/content"
+      android:inflatedId="@+id/content"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintLeft_toLeftOf="parent"
+      />
+</android.support.design.widget.CoordinatorLayout>
