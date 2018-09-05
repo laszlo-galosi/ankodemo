@@ -83,7 +83,7 @@ function gradlew() {
               command="docker exec -i $IMAGE_NAME /project/gradlew $1 -p /project -Dorg.gradle.daemon=true"
               ;;
             -s | --sync)
-                sync="./gradlew app:generateDebugSources -Dorg.gradle.daemon=true"
+                sync="./gradlew $PROJECT_MODULE:generateDebugSources -Dorg.gradle.daemon=true"
                 ;;
             -l | --launch)
                 shift

@@ -38,6 +38,7 @@ LOCAL_COMPRESS_LEVEL_CONFIG_PROPERTY="local_compression_level"
 REMOTE_COMPRESS_LEVEL_CONFIG_PROPERTY="remote_compression_level"
 LAUNCHING_ACTIVITY_PROPERTY="launching_activity"
 OUTPUT_APK_PRPOPERTY="output_apk"
+PROJECT_MODULE_NAME="project_module_name"
 
 if [ ! -f "$CONFIG_FILE" ]; then
     echo "Please create and fill $CONFIG_FILE."
@@ -49,6 +50,8 @@ LOCAL_COMPRESS_LEVEL=$(readConfigProperty "$LOCAL_COMPRESS_LEVEL_CONFIG_PROPERTY
 REMOTE_COMPRESS_LEVEL=$(readConfigProperty "$REMOTE_COMPRESS_LEVEL_CONFIG_PROPERTY")
 LAUNCHING_ACTIVITY=$(readConfigProperty "$LAUNCHING_ACTIVITY_PROPERTY")
 OUTPUT_APK_PATH=$(readConfigProperty "$OUTPUT_APK_PRPOPERTY")
+PROJECT_MODULE=$(readConfigProperty "$PROJECT_MODULE_NAME")
+
 
 if [ -z "$REMOTE_MACHINE" ]; then
     echo "Please specify \"$REMOTE_MACHINE_CONFIG_PROPERTY\" in $CONFIG_FILE."
@@ -94,6 +97,7 @@ function syncBeforeRemoteCommand {
     fi
 
     COMMAND+="--rsh ssh ./ $REMOTE_MACHINE:'$PROJECT_DIR_ON_REMOTE_MACHINE'"
+    #echo "Running rsync: $COMMAND"
 
     eval "$COMMAND"
 
