@@ -33,9 +33,11 @@ class DrawerContent @JvmOverloads constructor(
     }
 
     override fun onDrawerClosed(drawerView: View) {
+        progress = 0.0f
     }
 
     override fun onDrawerOpened(drawerView: View) {
+        progress = 1.0f
     }
 
     override fun onAttachedToWindow() {

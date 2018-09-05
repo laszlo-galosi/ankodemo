@@ -13,6 +13,7 @@ import android.support.v4.view.PagerAdapter
 import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.AppCompatButton
+import android.support.v7.widget.AppCompatImageButton
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
@@ -33,6 +34,10 @@ import trikita.log.Log
 import java.util.ArrayList
 
 class TutorialActivity : AppCompatActivity(), ViewPager.OnPageChangeListener {
+
+    companion object {
+        val ARG_PARENT: String = "ParentActivity"
+    }
 
     /**
      * Iterate through this activity content's children views recursively to
@@ -57,22 +62,22 @@ class TutorialActivity : AppCompatActivity(), ViewPager.OnPageChangeListener {
     data class Page(val num: Int, @DrawableRes val iconRes: Int, @StringRes val titleRes: Int,
             @StringRes val detailsRes: Int, @IdRes val id: Int = R.id.tut_page)
 
-    val firstPage = Page(1, R.drawable.ic_nav_tracking, R.string.page_start_stop,
+    val firstPage = Page(1, R.drawable.ic_nav_tracking, R.string.action_start_stop,
             R.string.details_tut01, R.id.tut_page_1)
 
     val pages = listOf(
             firstPage,
-            Page(2, R.drawable.ic_nav_coupons, R.string.page_coupons,
+            Page(2, R.drawable.ic_nav_coupons, R.string.action_coupons,
                     R.string.details_tut02, R.id.tut_page_2),
-            Page(3, R.drawable.ic_nav_insurance, R.string.page_insurance,
+            Page(3, R.drawable.ic_nav_insurance, R.string.action_insurance,
                     R.string.details_tut03, R.id.tut_page_3),
-            Page(4, R.drawable.ic_nav_service, R.string.page_service,
+            Page(4, R.drawable.ic_nav_service, R.string.action_service,
                     R.string.details_tut04, R.id.tut_page_4),
-            Page(5, R.drawable.ic_nav_service, R.string.page_door_to_door,
+            Page(5, R.drawable.ic_nav_service, R.string.action_door_to_door,
                     R.string.details_tut05, R.id.tut_page_5),
-            Page(6, R.drawable.ic_nav_bikephoto, R.string.page_bikephoto,
+            Page(6, R.drawable.ic_nav_bikephoto, R.string.action_bikephoto,
                     R.string.details_tut06, R.id.tut_page_6),
-            Page(7, R.drawable.ic_nav_profile, R.string.page_profile,
+            Page(7, R.drawable.ic_nav_profile, R.string.action_profile,
                     R.string.details_tut07, R.id.tut_page_7)
     )
 
@@ -97,8 +102,16 @@ class TutorialActivity : AppCompatActivity(), ViewPager.OnPageChangeListener {
         pageList
     }
 
+    val parentName: String? by lazy {
+        intent.getStringExtra(ARG_PARENT)
+    }
+
     private val startButton: AppCompatButton by lazy {
         motionLayout.findViewById<AppCompatButton>(R.id.lets_start)
+    }
+
+    private val backButton: AppCompatImageButton by lazy {
+        motionLayout.findViewById<AppCompatImageButton>(R.id.btn_back)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -110,10 +123,20 @@ class TutorialActivity : AppCompatActivity(), ViewPager.OnPageChangeListener {
         viewPager.addOnPageChangeListener(this)
         viewPager.addOnPageChangeListener(bikeLayout)
         val startAction = {
-            startActivity(intentFor<LoginActivity>())
-            finish()
+            if (parentName != null) {
+                finish()
+                onBackPressed()
+            } else {
+                startActivity(intentFor<LoginActivity>())
+                finish()
+            }
         }
         startButton.visibility = View.INVISIBLE
+        backButton.visibility = if (parentName != null) View.VISIBLE else View.GONE
+        backButton.onClick {
+            finish()
+            onBackPressed()
+        }
         startButton.onClick {
             startAction.invoke()
         }
@@ -144,7 +167,7 @@ class TutorialActivity : AppCompatActivity(), ViewPager.OnPageChangeListener {
         //Set the page data binding variable to display the selected page icon, title, details.
         when {
             position == (pages.size - 1) -> {
-                startButton.visibility = View.VISIBLE
+                startButton.visibility = if (parentName != null) View.INVISIBLE else View.VISIBLE
                 button_content.transitionToStart()
                 button_content.transitionToEnd()
             }

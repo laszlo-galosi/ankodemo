@@ -48,5 +48,11 @@ fun ViewGroup.touchedViewsFor(event: MotionEvent?): Sequence<View> {
             }
 }
 
+private fun <T : View> View.findParent(clazz: Class<T>): T? {
+    if (this.parent == null) return null
+    return if (this.parent.javaClass == clazz) this.parent as T
+    else (this.parent as View).findParent(clazz)
+}
+
 fun Context.toDrawable(@DrawableRes resource: Int): Drawable? = ContextCompat.getDrawable(this,
         resource)

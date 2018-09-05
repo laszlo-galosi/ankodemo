@@ -148,7 +148,7 @@
           app:layout_constraintLeft_toLeftOf="@id/guide_title_start"
           app:layout_constraintRight_toRightOf="@id/guide_title_end"
           app:layout_constraintStart_toStartOf="@id/guide_title_start"
-          tools:text="@string/page_door_to_door"
+          tools:text="@string/action_door_to_door"
           />
 
       <TextView

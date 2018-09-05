@@ -1,156 +1,292 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MotionScene
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:motion="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
   <Transition
-      motion:constraintSetStart="@+id/start"
-      motion:constraintSetEnd="@+id/end"
-      motion:duration="250"
-      motion:interpolator="linear">
+      app:constraintSetStart="@+id/start"
+      app:constraintSetEnd="@+id/end"
+      app:duration="@android:integer/config_longAnimTime"
+      app:interpolator="easeInOut">
+    <KeyFrameSet>
+      <KeyAttribute
+          app:framePosition="80"
+          app:target="@id/logo"
+          android:rotation="-90"
+          >
+      </KeyAttribute>
+      <KeyAttribute
+          app:framePosition="95"
+          android:rotation="0"
+          app:target="@id/logo">
+      </KeyAttribute>
+
+      <KeyAttribute
+          app:framePosition="50"
+          app:target="@id/action_tracking"
+          android:translationX="120dp"
+          >
+      </KeyAttribute>
+      <KeyAttribute
+          app:framePosition="95"
+          android:translationX="0dp"
+          app:target="@id/action_tracking">
+      </KeyAttribute>
+
+      <KeyAttribute
+          app:framePosition="55"
+          app:target="@id/action_coupons"
+          android:translationX="120dp"
+          >
+      </KeyAttribute>
+      <KeyAttribute
+          app:framePosition="95"
+          android:translationX="0dp"
+          app:target="@id/action_coupons">
+      </KeyAttribute>
+
+      <KeyAttribute
+          app:framePosition="60"
+          app:target="@id/action_services"
+          android:translationX="120dp"
+          >
+      </KeyAttribute>
+      <KeyAttribute
+          app:framePosition="95"
+          android:translationX="0dp"
+          app:target="@id/action_services">
+      </KeyAttribute>
+
+      <KeyAttribute
+          app:framePosition="65"
+          app:target="@id/action_bike_photo"
+          android:translationX="120dp"
+          >
+      </KeyAttribute>
+      <KeyAttribute
+          app:framePosition="95"
+          android:translationX="0dp"
+          app:target="@id/action_bike_photo">
+      </KeyAttribute>
+
+      <KeyAttribute
+          app:framePosition="70"
+          app:target="@id/action_insurance"
+          android:translationX="120dp"
+          >
+      </KeyAttribute>
+      <KeyAttribute
+          app:framePosition="95"
+          android:translationX="0dp"
+          app:target="@id/action_insurance">
+      </KeyAttribute>
+
+      <KeyAttribute
+          app:framePosition="75"
+          app:target="@id/action_tutorial"
+          android:translationX="120dp"
+          >
+      </KeyAttribute>
+      <KeyAttribute
+          app:framePosition="95"
+          android:translationX="0dp"
+          app:target="@id/action_tutorial">
+      </KeyAttribute>
+
+    </KeyFrameSet>
+  </Transition>
 
     <ConstraintSet android:id="@+id/start">
       <Constraint
-          android:id="@id/textView"
-          android:translationX="100dp"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_marginTop="32dp"
-          android:rotation="90"
-          motion:layout_constraintBottom_toTopOf="@+id/textView3"
-          motion:layout_constraintEnd_toEndOf="parent"
-          motion:layout_constraintStart_toStartOf="parent"
-          motion:layout_constraintTop_toTopOf="parent"
-          motion:layout_constraintVertical_chainStyle="spread"/>
-
-      <Constraint
-          android:id="@id/textView2"
-          android:translationX="100dp"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:rotation="90"
-          android:layout_marginTop="16dp"
-          motion:layout_constraintBottom_toTopOf="@+id/textView4"
-          motion:layout_constraintEnd_toEndOf="parent"
-          motion:layout_constraintStart_toStartOf="parent"
-          motion:layout_constraintTop_toBottomOf="@+id/view"/>
-
-      <Constraint
-          android:id="@id/textView4"
-          android:translationX="100dp"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:rotation="90"
-          android:layout_marginTop="16dp"
-          motion:layout_constraintBottom_toTopOf="@+id/textView5"
-          motion:layout_constraintEnd_toEndOf="parent"
-          motion:layout_constraintStart_toStartOf="parent"
-          motion:layout_constraintTop_toBottomOf="@+id/textView2"/>
-
-      <Constraint
-          android:id="@id/textView5"
-          android:translationX="100dp"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:rotation="90"
-          android:layout_marginTop="16dp"
-          motion:layout_constraintBottom_toBottomOf="parent"
-          motion:layout_constraintEnd_toEndOf="parent"
-          motion:layout_constraintStart_toStartOf="parent"
-          motion:layout_constraintTop_toBottomOf="@+id/textView4"/>
-
-      <Constraint
-          android:id="@id/view"
-          android:rotation="90"
-          android:translationX="100dp"
+          android:id="@id/logo"
           android:layout_width="100dp"
-          android:layout_height="1dp"
-          android:layout_marginTop="16dp"
-          motion:layout_constraintBottom_toTopOf="@+id/textView2"
-          motion:layout_constraintEnd_toEndOf="parent"
-          motion:layout_constraintStart_toStartOf="parent"
-          motion:layout_constraintTop_toBottomOf="@+id/textView3"/>
-
-      <Constraint
-          android:id="@id/textView3"
-          android:rotation="90"
-          android:translationX="100dp"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          motion:layout_constraintBottom_toTopOf="@+id/view"
-          motion:layout_constraintEnd_toEndOf="parent"
-          motion:layout_constraintStart_toStartOf="parent"
-          motion:layout_constraintTop_toBottomOf="@+id/textView"/>
-    </ConstraintSet>
-
-    <ConstraintSet android:id="@+id/end">
-      <Constraint
-          android:id="@id/textView"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_marginTop="32dp"
-          motion:layout_constraintBottom_toTopOf="@+id/textView3"
-          motion:layout_constraintEnd_toEndOf="parent"
-          motion:layout_constraintHorizontal_bias="0.5"
-          motion:layout_constraintStart_toStartOf="parent"
-          motion:layout_constraintTop_toTopOf="parent"
-          motion:layout_constraintVertical_bias="0.0"
-          motion:layout_constraintVertical_chainStyle="packed"/>
-
-      <Constraint
-          android:id="@id/textView2"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_marginTop="16dp"
-          motion:layout_constraintBottom_toTopOf="@+id/textView4"
-          motion:layout_constraintEnd_toEndOf="parent"
-          motion:layout_constraintHorizontal_bias="0.5"
-          motion:layout_constraintStart_toStartOf="parent"
-          motion:layout_constraintTop_toBottomOf="@+id/view"/>
-
-      <Constraint
-          android:id="@id/textView4"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_marginTop="16dp"
-          motion:layout_constraintBottom_toTopOf="@+id/textView5"
-          motion:layout_constraintEnd_toEndOf="parent"
-          motion:layout_constraintHorizontal_bias="0.5"
-          motion:layout_constraintStart_toStartOf="parent"
-          motion:layout_constraintTop_toBottomOf="@+id/textView2"/>
-
-      <Constraint
-          android:id="@id/textView5"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_marginTop="16dp"
-          motion:layout_constraintBottom_toBottomOf="parent"
-          motion:layout_constraintEnd_toEndOf="parent"
-          motion:layout_constraintHorizontal_bias="0.5"
-          motion:layout_constraintStart_toStartOf="parent"
-          motion:layout_constraintTop_toBottomOf="@+id/textView4"/>
+          android:layout_height="0dp"
+          android:layout_marginTop="24dp"
+          android:translationX="120dp"
+          android:rotation="-90"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toTopOf="parent"
+          app:layout_constraintBottom_toTopOf="@id/view"
+          />
 
       <Constraint
           android:id="@id/view"
           android:layout_width="100dp"
           android:layout_height="1dp"
-          android:layout_marginTop="16dp"
-          motion:layout_constraintBottom_toTopOf="@+id/textView2"
-          motion:layout_constraintEnd_toEndOf="parent"
-          motion:layout_constraintHorizontal_bias="0.5"
-          motion:layout_constraintStart_toStartOf="parent"
-          motion:layout_constraintTop_toBottomOf="@+id/textView3"/>
-
+          android:translationX="120dp"
+          android:layout_marginTop="24dp"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintLeft_toLeftOf="parent"
+          app:layout_constraintRight_toRightOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@id/logo"
+          />
       <Constraint
-          android:id="@id/textView3"
+          android:id="@id/action_tracking"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          motion:layout_constraintBottom_toTopOf="@+id/view"
-          motion:layout_constraintEnd_toEndOf="parent"
-          motion:layout_constraintHorizontal_bias="0.5"
-          motion:layout_constraintStart_toStartOf="parent"
-          motion:layout_constraintTop_toBottomOf="@+id/textView"/>
-    </ConstraintSet>
-  </Transition>
+          android:text="@null"
+          android:translationX="120dp"
+          android:layout_marginStart="16dp"
+          android:layout_marginTop="24dp"
+          app:layout_constraintHorizontal_bias="0.5"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/view"
+          />
+      <Constraint
+          android:id="@id/action_coupons"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:translationX="120dp"
+          android:layout_marginTop="24dp"
+          android:layout_marginStart="16dp"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/action_tracking"
+          />
 
+      <Constraint
+          android:id="@id/action_services"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:translationX="120dp"
+          android:layout_marginTop="24dp"
+          android:layout_marginStart="16dp"
+          app:layout_constraintHorizontal_bias="0.5"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/action_coupons"
+          />
+
+      <Constraint
+          android:id="@id/action_bike_photo"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:translationX="120dp"
+          android:layout_marginTop="24dp"
+          android:layout_marginStart="16dp"
+          app:layout_constraintHorizontal_bias="0.5"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/action_services"
+          />
+
+      <Constraint
+          android:id="@id/action_insurance"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:translationX="120dp"
+          android:layout_marginTop="24dp"
+          android:layout_marginStart="16dp"
+          app:layout_constraintHorizontal_bias="0.5"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/action_bike_photo"
+          />
+
+      <Constraint
+          android:id="@id/action_tutorial"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:translationX="120dp"
+          android:layout_marginTop="24dp"
+          android:layout_marginStart="16dp"
+          app:layout_constraintHorizontal_bias="0.5"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/action_insurance"
+          />
+    </ConstraintSet>
+
+  <ConstraintSet android:id="@+id/end">
+    <Constraint
+        android:id="@id/logo"
+        android:layout_width="100dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="24dp"
+        android:translationX="0dp"
+        android:rotation="0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+      <Constraint
+          android:id="@id/view"
+          android:layout_width="100dp"
+          android:layout_height="1dp"
+          android:translationX="0dp"
+          android:layout_marginTop="24dp"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintLeft_toLeftOf="parent"
+          app:layout_constraintRight_toRightOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@id/logo"
+          />
+      <Constraint
+          android:id="@id/action_tracking"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:translationX="0dp"
+          android:layout_marginStart="16dp"
+          android:layout_marginTop="24dp"
+          app:layout_constraintHorizontal_bias="0.5"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/view"
+          />
+      <Constraint
+          android:id="@id/action_coupons"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:translationX="0dp"
+          android:layout_marginTop="24dp"
+          android:layout_marginStart="16dp"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/action_tracking"
+          />
+
+      <Constraint
+          android:id="@id/action_services"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:translationX="0dp"
+          android:layout_marginTop="24dp"
+          android:layout_marginStart="16dp"
+          app:layout_constraintHorizontal_bias="0.5"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/action_coupons"
+          />
+
+      <Constraint
+          android:id="@id/action_bike_photo"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:translationX="0dp"
+          android:layout_marginTop="24dp"
+          android:layout_marginStart="16dp"
+          app:layout_constraintHorizontal_bias="0.5"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/action_services"
+          />
+
+      <Constraint
+          android:id="@id/action_insurance"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:translationX="0dp"
+          android:layout_marginTop="24dp"
+          android:layout_marginStart="16dp"
+          app:layout_constraintHorizontal_bias="0.5"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/action_bike_photo"
+          />
+
+      <Constraint
+          android:id="@id/action_tutorial"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:translationX="0dp"
+          android:layout_marginTop="24dp"
+          android:layout_marginStart="16dp"
+          app:layout_constraintHorizontal_bias="0.5"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/action_insurance"
+          />
+    </ConstraintSet>
 </MotionScene>

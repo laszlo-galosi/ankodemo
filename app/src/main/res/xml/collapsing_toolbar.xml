@@ -25,14 +25,14 @@
             app:customIntegerValue="0"/>
       </KeyAttribute>
       <KeyAttribute
-          app:framePosition="50"
+          app:framePosition="85"
           app:target="@id/logo">
         <CustomAttribute
             app:attributeName="Crossfade"
             app:customFloatValue="0.0"/>
       </KeyAttribute>
       <KeyAttribute
-          app:framePosition="90"
+          app:framePosition="95"
           app:target="@id/logo">
         <CustomAttribute
             app:attributeName="Crossfade"
